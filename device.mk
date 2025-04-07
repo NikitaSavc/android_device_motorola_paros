@@ -36,6 +36,10 @@ PRODUCT_PACKAGES += \
     init.oem.fingerprint2.sh \
     init.mmi.overlay.rc
 
+# Keylayout
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/keylayout/double-tap.kl:$(TARGET_COPY_OUT_VENDOR)/usr/keylayout/double-tap.kl
+
 # NFC
 TARGET_USES_NXP_NFC := true
 
@@ -44,6 +48,9 @@ PRODUCT_PACKAGES += \
     FrameworksResDevice \
     SettingsResDevice \
     SystemUIResDevice
+
+# Power HAL
+$(call soong_config_set,qtipower,tap_to_wake_node,/sys/class/touchscreen/primary/double_tap_enabled)
 
 # Screen
 TARGET_SCREEN_DENSITY := 400
